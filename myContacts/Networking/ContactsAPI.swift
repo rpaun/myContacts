@@ -17,7 +17,7 @@ class ContactsAPI {
             return json.arrayValue.map { item in
                 Contact(id: item["id"].intValue,
                         name: item["name"].stringValue,
-                        gender: item["gender"].stringValue == "male" ? .male : .female,
+                        gender:  .init(rawValue: item["gender"].stringValue) ?? .male,
                         active: item["status"].stringValue == "active")
             }.filter({$0.active})
         }
